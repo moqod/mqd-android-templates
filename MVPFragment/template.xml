@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<template
+    format="2"
+    revision="2"
+    name="MVP Fragment"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new MVP fragment">
+
+    <category value="MVP" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="fragmentClass"
+        name="Fragment Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="CustomFragment"
+        help="The name of the fragment class to create" />
+
+    <parameter
+        id="supportDataBinding"
+        name="Use DataBinding?"
+        type="boolean"
+        default="true"
+        help="Generate a layout tag in XML for the fragment" />
+
+    <parameter
+        id="useRxUtils"
+        name="Use RxUtils in presenter?"
+        type="boolean"
+        default="true"
+        help="Use RxUtils for manage rx subscribtions" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="fragment_${classToResource(fragmentClass)}"
+        default="fragment_custom"
+        help="The name of the layout to create for the fragment" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <execute file="recipe.xml.ftl" />
+
+</template>  
