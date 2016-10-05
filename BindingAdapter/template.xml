@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Binding Adapter"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new BindingAdapter">
+
+    <category value="Adapters" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="adapterClass"
+        name="Adapter Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="CustomAdapter"
+        help="The name of the fragment class to create" />
+
+    <parameter
+        id="useSortedList"
+        name="Use SortedList?"
+        type="boolean"
+        default="true"
+        help="Use SortedListWrapper to store the data into adapter" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="item_${classToResource(adapterClass)}"
+        default="item_custom"
+        help="The name of the layout to create for the fragment" />
+
+    <parameter
+        id="viewModelClass"
+        name="ViewModel Name"
+        type="string"
+        constraints="class|exists|nonempty"
+        default=""
+        help="The name of the ViewModel class" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <execute file="recipe.xml.ftl" />
+
+</template>  
