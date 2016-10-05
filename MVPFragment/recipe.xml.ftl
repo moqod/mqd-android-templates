@@ -20,4 +20,6 @@
     <instantiate from="src/app_package/classes/Presenter.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/${underscoreToCamelCase(classToResource(fragmentClass))}Presenter.java" />
 
+    <open file="${escapeXmlAttribute(srcOut)}/${fragmentClass}.java" />
+
 </recipe>

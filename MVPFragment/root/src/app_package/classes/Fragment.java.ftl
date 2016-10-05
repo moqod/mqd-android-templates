@@ -1,5 +1,8 @@
 package ${packageName};
 
+<#if supportDataBinding>
+import android.databinding.DataBindingUtil;
+</#if>
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +12,7 @@ import android.view.ViewGroup;
 
 import ${applicationPackage}.R;
 import ${packageName}.injection.${underscoreToCamelCase(classToResource(fragmentClass))}StubComponent;
-<#if supportDataBinding>import ${packageName}.databinding.${underscoreToCamelCase(layoutName)}Binding;</#if>
+<#if supportDataBinding>import ${applicationPackage}.databinding.${underscoreToCamelCase(layoutName)}Binding;</#if>
 
 import javax.inject.Inject;
 
@@ -22,7 +25,7 @@ public class ${fragmentClass} extends Fragment implements ${underscoreToCamelCas
 
     @Inject ${underscoreToCamelCase(classToResource(fragmentClass))}Presenter mPresenter;
 	<#if supportDataBinding>
-    private FragmentPharmacyDashboardBinding mBinding;
+    private ${underscoreToCamelCase(layoutName)}Binding mBinding;
     </#if>
 
     @Override
