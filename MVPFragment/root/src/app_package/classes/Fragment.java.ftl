@@ -17,7 +17,7 @@ import ${packageName}.injection.${underscoreToCamelCase(classToResource(fragment
 import javax.inject.Inject;
 
 
-public class ${fragmentClass} extends Fragment implements ${underscoreToCamelCase(classToResource(fragmentClass))}MvpContract.View {
+public class ${fragmentClass} extends Fragment implements ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View {
 
     public static ${fragmentClass} newInstance() {
         return new ${fragmentClass}();
@@ -33,7 +33,7 @@ public class ${fragmentClass} extends Fragment implements ${underscoreToCamelCas
         super.onCreate(savedInstanceState);
         Injector.getComponent(getActivity(), ${underscoreToCamelCase(classToResource(fragmentClass))}StubComponent.class).inject(this);
     }
-
+	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		<#if supportDataBinding>

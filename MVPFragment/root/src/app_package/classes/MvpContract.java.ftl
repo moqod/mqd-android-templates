@@ -1,9 +1,10 @@
 package ${packageName};
 
-public interface ${underscoreToCamelCase(classToResource(fragmentClass))}MvpContract {
+public interface ${underscoreToCamelCase(classToResource(fragmentClass))}Contract {
     interface View {
     }
-
     interface EventListener {
+    }
+	interface EventDelegate {
     }
 }

@@ -1,21 +1,21 @@
 package ${packageName}.injection;
 
-import ${packageName}.${underscoreToCamelCase(classToResource(fragmentClass))}Router;
+import ${packageName}.${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public final class ${underscoreToCamelCase(classToResource(fragmentClass))}Module {
 
-	private ${underscoreToCamelCase(classToResource(fragmentClass))}Router mRouter;
+	private ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate mEventDelegate;
 
-	public ${underscoreToCamelCase(classToResource(fragmentClass))}Module(${underscoreToCamelCase(classToResource(fragmentClass))}Router router) {
-		mRouter = router;
+	public ${underscoreToCamelCase(classToResource(fragmentClass))}Module(${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate eventDelegate) {
+		mEventDelegate = eventDelegate;
 	}
 
 	@Provides
-	public ${underscoreToCamelCase(classToResource(fragmentClass))}Router provideRouter() {
-		return mRouter;
+	${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate provideEventDelegate() {
+		return mEventDelegate;
 	}
 
 }
