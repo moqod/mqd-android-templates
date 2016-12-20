@@ -1,5 +1,6 @@
 package ${packageName}.injection;
 
+import com.moqod.android.base.di.ActivityScope;
 import ${packageName}.${fragmentClass};
 
 import dagger.Subcomponent;

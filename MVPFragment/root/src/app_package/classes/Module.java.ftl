@@ -1,6 +1,6 @@
 package ${packageName}.injection;
 
-import ${packageName}.${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate;
+import ${packageName}.${underscoreToCamelCase(classToResource(fragmentClass))}Contract;
 import dagger.Module;
 import dagger.Provides;
 
