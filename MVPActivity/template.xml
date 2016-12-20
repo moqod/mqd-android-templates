@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<template
+    format="2"
+    revision="1"
+    name="MVP Activity"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new MVP activity">
+
+    <category value="MVP" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="CustomActivity"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="activity_${classToResource(activityClass)}"
+        default="activity_custom"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+
+    <execute file="recipe.xml.ftl" />
+
+</template>  
