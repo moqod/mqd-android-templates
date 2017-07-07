@@ -1,14 +1,14 @@
 package ${packageName}.injection;
 
-import com.moqod.android.base.di.ActivityScope;
+import ${applicationPackage}.di.fragment.FragmentScope;
 import ${packageName}.${fragmentClass};
-
 import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
 
-@ActivityScope
-@Subcomponent(modules = {
-        ${underscoreToCamelCase(classToResource(fragmentClass))}Module.class
-})
-public interface ${underscoreToCamelCase(classToResource(fragmentClass))}StubComponent {
-    void inject(${fragmentClass} fragment);
+@FragmentScope
+@Subcomponent
+public interface ${fragmentClass}Component extends AndroidInjector<${fragmentClass}> {
+    @Subcomponent.Builder
+    public abstract class Builder extends AndroidInjector.Builder<${fragmentClass}> {
+    }
 }

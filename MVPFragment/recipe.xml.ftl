@@ -6,13 +6,10 @@
       to="${escapeXmlAttribute(srcOut)}/${fragmentClass}.java" />
 
     <instantiate from="src/app_package/classes/MvpContract.java.ftl"
-      to="${escapeXmlAttribute(srcOut)}/${underscoreToCamelCase(classToResource(fragmentClass))}Contract.java" />
+      to="${escapeXmlAttribute(srcOut)}/${fragmentClass}Contract.java" />
 
     <instantiate from="src/app_package/classes/Component.java.ftl"
-      to="${escapeXmlAttribute(srcOut)}/injection/${underscoreToCamelCase(classToResource(fragmentClass))}StubComponent.java" />
-
-    <instantiate from="src/app_package/classes/Module.java.ftl"
-      to="${escapeXmlAttribute(srcOut)}/injection/${underscoreToCamelCase(classToResource(fragmentClass))}Module.java" />
+      to="${escapeXmlAttribute(srcOut)}/injection/${fragmentClass}Component.java" />
 
     <instantiate from="src/app_package/classes/Presenter.java.ftl"
       to="${escapeXmlAttribute(srcOut)}/${underscoreToCamelCase(classToResource(fragmentClass))}Presenter.java" />

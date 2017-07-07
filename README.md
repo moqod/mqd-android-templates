@@ -1,6 +1,6 @@
 **Install:**
 
-Templates need to copy into IDEA installation folder:
+Templates need to copy into Android Studio installation folder:
 
 *OSX*
 

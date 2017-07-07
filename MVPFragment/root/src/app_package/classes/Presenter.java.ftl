@@ -1,31 +1,34 @@
 package ${packageName};
 
-import com.moqod.android.mvp.base.BasePresenter;
-import com.moqod.android.rxutils.RxUtils;
+import android.support.annotation.Nullable;
+import ${applicationPackage}.presentation.common.BasePresenter;
+import ${packageName}.${fragmentClass}Contract;
 
 import javax.inject.Inject;
 
-public final class ${underscoreToCamelCase(classToResource(fragmentClass))}Presenter implements BasePresenter<${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View>, ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventListener {
+public final class ${underscoreToCamelCase(classToResource(fragmentClass))}Presenter implements BasePresenter<${fragmentClass}Contract.View>, ${fragmentClass}Contract.EventListener {
 
-	private ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View mView;
-	private ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate mEventDelegate;
+	private ${fragmentClass}Contract.View mView;
+	private ${fragmentClass}Contract.EventDelegate mEventDelegate;
 
     @Inject
-    public ${underscoreToCamelCase(classToResource(fragmentClass))}Presenter(${underscoreToCamelCase(classToResource(fragmentClass))}Contract.EventDelegate eventDelegate) {
+    public ${underscoreToCamelCase(classToResource(fragmentClass))}Presenter(${fragmentClass}Contract.EventDelegate eventDelegate) {
     	mEventDelegate = eventDelegate;
     }
 
 	@Override
-    public void attachView(${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View view) {
+    public void attachView(${fragmentClass}Contract.View view) {
         mView = view;
     }
 
     @Override
     public void detachView() {
-    	<#if useRxUtils>
-    	RxUtils.unsubscribe(this);
-    	</#if>
         mView = null;
     }
+
+    @Nullable
+	${fragmentClass}Contract.View getView() {
+		return mView;
+	}
 
 }

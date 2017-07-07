@@ -1,6 +1,6 @@
 package ${packageName};
 
-public interface ${underscoreToCamelCase(classToResource(fragmentClass))}Contract {
+public interface ${fragmentClass}Contract {
     interface View {
     }
     interface EventListener {

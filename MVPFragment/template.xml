@@ -26,13 +26,6 @@
         help="Generate a layout tag in XML for the fragment" />
 
     <parameter
-        id="useRxUtils"
-        name="Use RxUtils in presenter?"
-        type="boolean"
-        default="true"
-        help="Use RxUtils for manage rx subscribtions" />
-
-    <parameter
         id="layoutName"
         name="Layout Name"
         type="string"

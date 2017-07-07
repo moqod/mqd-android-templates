@@ -1,0 +1,8 @@
+android {
+    lintOptions {
+        lintConfig = new File("$project.rootDir/tools/config/lint.xml")
+        htmlOutput = new File("$project.buildDir/reports/lint/index.html")
+        xmlOutput = new File("$project.buildDir/reports/lint/lint-results.xml")
+        abortOnError false
+    }
+}

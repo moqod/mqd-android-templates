@@ -11,13 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ${applicationPackage}.R;
-import ${packageName}.injection.${underscoreToCamelCase(classToResource(fragmentClass))}StubComponent;
 <#if supportDataBinding>import ${applicationPackage}.databinding.${underscoreToCamelCase(layoutName)}Binding;</#if>
+import ${applicationPackage}.presentation.common.BaseFragment;
+import dagger.android.support.AndroidSupportInjection;
 
 import javax.inject.Inject;
 
-
-public class ${fragmentClass} extends Fragment implements ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View {
+public class ${fragmentClass} extends BaseFragment implements ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View {
 
     public static ${fragmentClass} newInstance() {
         return new ${fragmentClass}();
@@ -29,11 +29,11 @@ public class ${fragmentClass} extends Fragment implements ${underscoreToCamelCas
     </#if>
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Injector.getComponent(getActivity(), ${underscoreToCamelCase(classToResource(fragmentClass))}StubComponent.class).inject(this);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        AndroidSupportInjection.inject(this);
     }
-	
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		<#if supportDataBinding>

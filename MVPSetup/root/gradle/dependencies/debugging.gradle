@@ -1,0 +1,8 @@
+compile 'com.jakewharton.timber:timber:4.4.0'
+debugCompile 'com.facebook.stetho:stetho:1.4.2'
+debugCompile 'com.github.pedrovgs:lynx:1.0.8'
+
+def leakCanaryVersion = '1.5'
+debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+
