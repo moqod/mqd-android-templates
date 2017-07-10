@@ -1,0 +1,53 @@
+image: jerbob92/gitlab-ci-android:latest
+
+before_script:
+- export GRADLE_USER_HOME=`pwd`/.gradle
+- mkdir -p $GRADLE_USER_HOME
+- chmod +x ./gradlew
+- chmod +x ./check.sh
+- chmod +x ./build.sh
+
+cache:
+  paths:
+  - .gradle/wrapper
+  - .gradle/caches
+
+stages:
+- build
+- check
+- deploy
+
+build:
+  stage: build
+  script:
+  - ./build.sh
+  only:
+  - develop
+  artifacts:
+    paths:
+    - app/build/outputs/apk/
+  tags:
+  - docker
+
+check:
+  stage: check
+  script: ./check.sh
+  artifacts:
+    paths:
+    - app/build/reports
+  tags:
+  - docker
+
+pages:
+  stage: deploy
+  dependencies:
+    - check
+  script:
+    - mv app/build/reports/ public/
+    - ls public
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  tags:
+  - docker

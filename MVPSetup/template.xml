@@ -66,6 +66,12 @@
         constraints="package"
         default="com.moqod.android.myapp" />
 
+    <parameter
+        id="ciScripts"
+        name="Create CI config"
+        type="boolean"
+        default="true"" />
+
     <!-- 128x128 thumbnails relative to template.xml -->
     <thumbs>
         <!-- default thumbnail is required -->

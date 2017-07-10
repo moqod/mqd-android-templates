@@ -123,5 +123,17 @@
 	
 	<!-- End resources -->	
 
+	<!-- Start CI -->
+	<#if ciScripts>
+	<copy from="root/ci/.gitlab-ci.yml"
+			to="${escapeXmlAttribute(topOut)}/.gitlab-ci.yml" />
+	<copy from="root/ci/build.sh"
+			to="${escapeXmlAttribute(topOut)}/build.sh" />
+	<copy from="root/ci/check.sh"
+			to="${escapeXmlAttribute(topOut)}/check.sh" />
+	</#if>
+	
+	<!-- End CI -->
+
     <open file="${escapeXmlAttribute(srcOut)}/${activityClass}.java" />
 </recipe>
