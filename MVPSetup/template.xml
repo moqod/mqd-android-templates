@@ -1,22 +1,32 @@
 <?xml version="1.0"?>
 <template
     format="5"
-    revision="7"
+    revision="5"
     name="Basic MVP project setup"
     minApi="9"
     minBuildApi="14"
-    description="Creates a new MVP project structure"
-    category="Activity">
+    description="Creates a new MVP project structure">
 
     <category value="Activity" />
     <formfactor value="Mobile" />
 
-    <!-- 128x128 thumbnails relative to template.xml -->
-    <thumbs>
-        <!-- default thumbnail is required -->
-        <thumb>template_blank_activity.png</thumb>
-    </thumbs>
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${layoutToActivity(layoutName)}"
+        default="MainActivity"
+        help="The name of the activity class to create" />
 
+    <parameter
+        id="featureName"
+        name="Feature Name"
+        type="string"
+        constraints="nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="main"
+        help="The name of the activity class to create" />
 
     <parameter
         id="generateLayout"
@@ -61,8 +71,11 @@
         name="Create CI config"
         type="boolean"
         default="true" />
-
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
     <globals file="globals.xml.ftl" />
     <execute file="recipe.xml.ftl" />
-
 </template>

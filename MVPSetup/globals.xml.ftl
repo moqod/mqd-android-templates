@@ -5,9 +5,10 @@
     <global id="simpleLayoutName" value="${layoutName}" />
     <global id="excludeMenu" type="boolean" value="true" />
     <global id="generateActivityTitle" type="boolean" value="false" />
-    
+
     <global id="topOut" value="." />
     <global id="debugOut" value="${escapeXmlAttribute(projectOut)}/src/debug/java/${slashedPackageName(packageName)}" />
     <global id="releaseOut" value="${escapeXmlAttribute(projectOut)}/src/release/java/${slashedPackageName(packageName)}" />
+    <global id="relativePackage" value="" />
     <#include "../common/common_globals.xml.ftl" />
 </globals>
