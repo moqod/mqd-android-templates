@@ -6,7 +6,10 @@
 			xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
-		
+
+		<variable
+			name="eventListener"
+			type="${packageName}.${fragmentClass}Contract.EventListener" />
 	</data>
 
     <FrameLayout

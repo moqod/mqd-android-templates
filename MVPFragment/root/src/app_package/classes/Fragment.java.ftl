@@ -17,7 +17,7 @@ import dagger.android.support.AndroidSupportInjection;
 
 import javax.inject.Inject;
 
-public class ${fragmentClass} extends BaseFragment implements ${underscoreToCamelCase(classToResource(fragmentClass))}Contract.View {
+public class ${fragmentClass} extends BaseFragment implements ${fragmentClass}Contract.View {
 
     public static ${fragmentClass} newInstance() {
         return new ${fragmentClass}();
@@ -47,6 +47,7 @@ public class ${fragmentClass} extends BaseFragment implements ${underscoreToCame
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mBinding.setEventListener(mPresenter);
         mPresenter.attachView(this);
     }
 
@@ -55,5 +56,5 @@ public class ${fragmentClass} extends BaseFragment implements ${underscoreToCame
         super.onDestroyView();
         mPresenter.detachView();
     }
-    
+
 }
