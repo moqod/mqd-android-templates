@@ -23,7 +23,7 @@
 
 	<instantiate from="root/src/app_package/di/activity/ActivityBindingsModule.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/di/activity/ActivityBindingsModule.java" />
-                   
+
     <instantiate from="root/src/app_package/di/activity/ActivityScope.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/di/activity/ActivityScope.java" />
 
@@ -42,13 +42,13 @@
 
     <instantiate from="root/src/app_package/presentation/common/BaseActivity.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/presentation/common/BaseActivity.java" />
-                   
+
     <instantiate from="root/src/app_package/presentation/common/BasePresenter.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/presentation/common/BasePresenter.java" />
 
     <instantiate from="root/src/app_package/presentation/common/BaseFragment.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/presentation/common/BaseFragment.java" />
-	
+
 	<!-- End presentation common -->
 
 	<!-- Start feature -->
@@ -73,9 +73,9 @@
              to="${escapeXmlAttribute(projectOut)}/build.gradle" />
 
 	<copy from="root/gradle/dependencies/debugging.gradle"
-			to="${escapeXmlAttribute(projectOut)}/dependencies/logging.gradle" />
+			to="${escapeXmlAttribute(projectOut)}/dependencies/debugging.gradle" />
 	<copy from="root/gradle/dependencies/support.gradle"
-			to="${escapeXmlAttribute(projectOut)}/dependencies/support.gradle" />	
+			to="${escapeXmlAttribute(projectOut)}/dependencies/support.gradle" />
 	<copy from="root/gradle/dependencies/rx.gradle"
 			to="${escapeXmlAttribute(projectOut)}/dependencies/rx.gradle" />
 	<instantiate from="root/gradle/dependencies/dagger.gradle.ftl"
@@ -83,35 +83,25 @@
 	<copy from="root/gradle/dependencies/multidex.gradle"
 			to="${escapeXmlAttribute(projectOut)}/dependencies/multidex.gradle" />
 
+	<#if localise>
+    	<instantiate from="root/gradle/tools/localise.gradle.ftl"
+    			to="${escapeXmlAttribute(topOut)}/tools/localise.gradle" />
+  </#if>
 
-	<instantiate from="root/gradle/tools/updraft.gradle.ftl"
-             to="${escapeXmlAttribute(topOut)}/tools/updraft.gradle" />
-	<copy from="root/gradle/tools/localise.gradle"
-			to="${escapeXmlAttribute(topOut)}/tools/localise.gradle" />
-	<copy from="root/gradle/tools/findbugs.gradle"
-			to="${escapeXmlAttribute(topOut)}/tools/findbugs.gradle" />
 	<copy from="root/gradle/tools/lint.gradle"
 			to="${escapeXmlAttribute(topOut)}/tools/lint.gradle" />
 	<copy from="root/gradle/tools/icon-badge.gradle"
 			to="${escapeXmlAttribute(topOut)}/tools/icon-badge.gradle" />
-	<copy from="root/gradle/tools/pmd.gradle"
-			to="${escapeXmlAttribute(topOut)}/tools/pmd.gradle" />
 	<copy from="root/gradle/tools/git-version.gradle"
 			to="${escapeXmlAttribute(topOut)}/tools/git-version.gradle" />
 
-	<copy from="root/gradle/tools/config/pmd-rules.xml"
-			to="${escapeXmlAttribute(topOut)}/tools/config/pmd-rules.xml" />
-	<copy from="root/gradle/tools/config/lint.xml"
-			to="${escapeXmlAttribute(topOut)}/tools/config/lint.xml" />
-	<copy from="root/gradle/tools/config/findbugs-filter.xml"
-			to="${escapeXmlAttribute(topOut)}/tools/config/findbugs-filter.xml" />
-	<copy from="root/gradle/tools/config/cpdhtml.xslt"
-			to="${escapeXmlAttribute(topOut)}/tools/config/cpdhtml.xslt" />
+  <copy from="root/gradle/tools/config/lint.xml"
+  			to="${escapeXmlAttribute(topOut)}/tools/config/lint.xml" />
 
 	<!-- End Gradle -->
 
 	<!-- Start resources -->
-	
+
 	<copy from="root/res/mipmap-hdpi"
 			to="${escapeXmlAttribute(resOut)}/mipmap-hdpi" />
 	<copy from="root/res/mipmap-xhdpi"
@@ -119,20 +109,26 @@
 	<copy from="root/res/mipmap-xxhdpi"
 			to="${escapeXmlAttribute(resOut)}/mipmap-xxhdpi" />
 	<copy from="root/res/mipmap-xxxhdpi"
-			to="${escapeXmlAttribute(resOut)}/mipmap-xxxhdpi" />	
-	
-	<!-- End resources -->	
+			to="${escapeXmlAttribute(resOut)}/mipmap-xxxhdpi" />
+
+	<!-- End resources -->
 
 	<!-- Start CI -->
 	<#if ciScripts>
-	<copy from="root/ci/.gitlab-ci.yml"
-			to="${escapeXmlAttribute(topOut)}/.gitlab-ci.yml" />
-	<copy from="root/ci/build.sh"
-			to="${escapeXmlAttribute(topOut)}/build.sh" />
-	<copy from="root/ci/check.sh"
-			to="${escapeXmlAttribute(topOut)}/check.sh" />
+    	<copy from="root/ci/.gitlab-ci.yml"
+    			to="${escapeXmlAttribute(topOut)}/.gitlab-ci.yml" />
+    	<copy from="root/ci/build.sh"
+    			to="${escapeXmlAttribute(topOut)}/build.sh" />
+      <copy from="root/ci/build.sh"
+          to="${escapeXmlAttribute(topOut)}/build_customer.sh" />
+      <copy from="root/ci/deploy.sh"
+          to="${escapeXmlAttribute(topOut)}/deploy.sh" />
+      <copy from="root/ci/deploy.sh"
+          to="${escapeXmlAttribute(topOut)}/deploy_customer.sh" />
+    	<copy from="root/ci/check.sh"
+    			to="${escapeXmlAttribute(topOut)}/check.sh" />
 	</#if>
-	
+
 	<!-- End CI -->
 
     <open file="${escapeXmlAttribute(srcOut)}/${activityClass}.java" />

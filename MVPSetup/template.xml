@@ -58,7 +58,7 @@
         type="boolean"
         default="true"
         help="If false, this activity base class will be Activity instead of AppCompatActivity" />
-            
+
     <parameter
         id="packageName"
         name="Package name"
@@ -71,6 +71,20 @@
         name="Create CI config"
         type="boolean"
         default="true" />
+
+    <parameter
+            id="localise"
+            name="Uses localise.biz?"
+            type="boolean"
+            default="true" />
+
+    <parameter
+        id="localiseKey"
+        name="Localise.bix API KEY"
+        type="string"
+        visibility="localise!false"
+        help="Please visits localise.biz to get the API key."/>
+
     <!-- 128x128 thumbnails relative to template.xml -->
     <thumbs>
         <!-- default thumbnail is required -->

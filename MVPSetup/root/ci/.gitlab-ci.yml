@@ -1,4 +1,4 @@
-image: jerbob92/gitlab-ci-android:latest
+image: jangrewe/gitlab-ci-android
 
 before_script:
 - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -6,8 +6,12 @@ before_script:
 - chmod +x ./gradlew
 - chmod +x ./check.sh
 - chmod +x ./build.sh
+- chmod +x ./build_customer.sh
+- chmod +x ./deploy.sh
+- chmod +x ./deploy_customer.sh
 
 cache:
+  key: ${CI_PROJECT_ID}
   paths:
   - .gradle/wrapper
   - .gradle/caches
@@ -15,39 +19,49 @@ cache:
 stages:
 - build
 - check
-- deploy
+
+build_and_deploy:
+  stage: build
+  script:
+  - ./build.sh
+  - ./deploy.sh
+  only:
+  - develop
+  tags:
+  - docker
+
+build_and_deploy_customer:
+  stage: build
+  script:
+  - ./build_customer.sh
+  - ./deploy_customer.sh
+  only:
+  - customer
+  artifacts:
+    paths:
+    - app/build/outputs/apk/prod
+    expire_in: 1 week
+  tags:
+  - docker
 
 build:
   stage: build
   script:
   - ./build.sh
-  only:
-  - develop
+  except:
+    - develop
+    - customer
   artifacts:
     paths:
-    - app/build/outputs/apk/
+    - app/build/outputs/apk/stage/qa
+    expire_in: 1 week
   tags:
   - docker
 
 check:
   stage: check
   script: ./check.sh
-  artifacts:
-    paths:
-    - app/build/reports
-  tags:
-  - docker
-
-pages:
-  stage: deploy
-  dependencies:
-    - check
-  script:
-    - mv app/build/reports/ public/
-    - ls public
-  artifacts:
-    paths:
-      - public
-    expire_in: 30 days
+  only:
+    - develop
   tags:
   - docker

@@ -2,8 +2,9 @@ task updateLocolise {
     doLast {
         def stringsFileName = 'strings.xml'
         def localisations = ['en': 'values']
-        def apiKey = 'TODO: insert your key here'
+        def apiKey = '${localiseKey}'
 
+<#noparse>
         localisations.each {
             File path = new File("${project.projectDir}/src/main/res/${it.value}")
             if (!path.exists()) {
@@ -25,3 +26,4 @@ task updateLocolise {
         }
     }
 }
+</#noparse>

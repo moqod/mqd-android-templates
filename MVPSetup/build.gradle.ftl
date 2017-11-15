@@ -3,23 +3,20 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.4.0'
         classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
         classpath 'com.github.yuebinyun.debug-badge:debug-badge:0.1.0'
     }
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.jakewharton.hugo'
 
+<#if localise>
 apply from: "$project.rootDir/tools/localise.gradle"
-apply from: "$project.rootDir/tools/updraft.gradle"
+</#if>
 apply from: "$project.rootDir/tools/lint.gradle"
 apply from: "$project.rootDir/tools/icon-badge.gradle"
 //apply from: "$project.rootDir/tools/git-version.gradle" // uncomment when setup git repo will be finished
-apply from: "$project.rootDir/tools/findbugs.gradle"
-apply from: "$project.rootDir/tools/pmd.gradle"
 
 android {
     compileOptions {
@@ -98,7 +95,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude module: 'jsr305'
     })
-    
+
     def tree = fileTree(dir: 'dependencies', include: '**/*.gradle')
     tree.each { File file -> apply from: file, to: dependencies }
 }
