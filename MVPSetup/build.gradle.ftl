@@ -8,6 +8,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "2.6"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 
@@ -16,7 +20,8 @@ apply from: "$project.rootDir/tools/localise.gradle"
 </#if>
 apply from: "$project.rootDir/tools/lint.gradle"
 apply from: "$project.rootDir/tools/icon-badge.gradle"
-//apply from: "$project.rootDir/tools/git-version.gradle" // uncomment when setup git repo will be finished
+apply from : "https://raw.githubusercontent.com/moqod/sonar-android-config/master/sonarqube-26.gradle"
+//apply from: "$project.rootDir/tools/git-version.gradle" // TODO: uncomment when setup git repo will be finished
 
 android {
     compileOptions {
@@ -34,6 +39,7 @@ android {
             keyPassword 'android'
         }
         release {
+            // TODO: generate release certificate
             storeFile file('debug.keystore')
             storePassword 'android'
             keyAlias 'androiddebugkey'
@@ -45,15 +51,19 @@ android {
             minifyEnabled false
             shrinkResources false
             signingConfig signingConfigs.debug
+            versionNameSuffix "-debug"
+            applicationIdSuffix "debug"
         }
         release {
             minifyEnabled true
             shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
     }
     productFlavors {
         stage {
+            // TODO: uncomment when setup git repo will be finished
             //versionCode gitVersionCode
             //versionName gitVersionName
             buildConfigField("String", "BASE_URL", "\"\"")
@@ -61,16 +71,10 @@ android {
             applicationIdSuffix "stage"
         }
         prod {
-	        //versionCode gitVersionCode
+            // TODO: uncomment when setup git repo will be finished
+	          //versionCode gitVersionCode
             //versionName gitVersionName
             buildConfigField("String", "BASE_URL", "\"\"")
-        }
-        dev {
-            //versionCode gitVersionCodeTime
-            //versionName gitVersionName
-            buildConfigField("String", "BASE_URL", "\"\"")
-            versionNameSuffix "-dev"
-            applicationIdSuffix "dev"
         }
     }
     dataBinding {

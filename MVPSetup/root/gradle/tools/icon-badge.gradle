@@ -6,7 +6,7 @@ def getCurrentFlavor() {
     Gradle gradle = getGradle()
     String  tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
 
-    Pattern pattern;
+    Pattern pattern
 
     if(tskReqStr.contains("assemble")) {
         pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
@@ -20,7 +20,7 @@ def getCurrentFlavor() {
         return matcher.group(1).toLowerCase()
     } else {
         println "NO MATCH FOUND"
-        return "";
+        return ""
     }
 }
 

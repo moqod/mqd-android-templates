@@ -26,24 +26,21 @@ TBD
  rootProject
     |   - .gitlab-ci.yml
     |   - build.sh
+    |   - build_customer.sh
+    |   - deploy.sh
+    |   - deploy_customer.sh
     |   - check.sh
     +-- tools
     |   +-- config
-    |       - cpdhtml.xslt
-    |       - findbugs-filter.xml
     |       - lint.xml
-    |       - pmd-rules.xml
-    |   - findbugs.gradle
     |   - git-version.gradle
     |   - icon-badge.gradle
     |   - lint.gradle
     |   - localise.gradle
-    |   - pmd.gradle
-    |   - updraft.gradle
     +-- app
     |   +-- dependencies
     |       - dagger.gradle
-    |       - logging.gradle
+    |       - debugging.gradle
     |       - multidex.gradle
     |       - rx.gradle
     |       - support.gradle
@@ -62,7 +59,8 @@ TBD
     |               +-- app
     |                   - AppComponent.java
     |                   - AppModule.java
-    |               +-- FragmentScope.java
+    |               +-- fragment
+    |                   - FragmentScope.java
     |           +-- presentation
     |               +-- common
     |                   - BaseActivity.java
@@ -80,7 +78,7 @@ TBD
 This template creates the following classes structure:
 
 ```
-+-- feature_packege_name
++-- feature_package_name
 |   - FeatureActivity.java
 |   - FeatureActivityComponent.java
 

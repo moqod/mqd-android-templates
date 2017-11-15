@@ -1,4 +1,4 @@
 #!/bin/bash
 set -xe
 
-./gradlew --no-daemon assembleStageQa
+./gradlew --no-daemon assembleStageDebug
